@@ -253,6 +253,10 @@ $ ssh -o "StrictHostKeyChecking no" root@$SERVER1_IP
 # exit
 ```
 
+```
+$ ssh root@$SERVER1_IP 'bash -s' < install-basic-server-configuration.sh
+```
+
 ```sh
 $ terraform destroy
 ```
