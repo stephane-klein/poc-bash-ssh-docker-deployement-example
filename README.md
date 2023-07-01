@@ -261,7 +261,9 @@ $ ./scripts/install_basic_server_configuration.sh
 
 ## Part 2: deploy Miniflux application
 
-...
+```sh
+$ ./scripts/deploy_miniflux.sh
+```
 
 ## Part 3: destroy the server
 
