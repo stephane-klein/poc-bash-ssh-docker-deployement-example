@@ -26,6 +26,8 @@ Load variable env:
 $ direnv allow
 ```
 
+## Part 1: deploy the server
+
 You can use this command to choose the type of server to install, depending on your financial constraints and resource requirements:
 
 ```
@@ -256,6 +258,12 @@ $ ssh -o "StrictHostKeyChecking no" root@$SERVER1_IP
 ```
 $ ./scripts/install.sh
 ```
+
+## Part 2: deploy Miniflux application
+
+...
+
+## Part 3: destroy the server
 
 ```sh
 $ terraform destroy
