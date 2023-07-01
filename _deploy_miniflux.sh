@@ -13,11 +13,11 @@ services:
     ports:
     - 8080:8080
     environment:
-      DATABASE_URL: postgres://miniflux:secret@postgres/miniflux?sslmode=disable
+      DATABASE_URL: postgres://miniflux:{{ .Env.MINIFLUX_POSTGRES_PASSWORD }}@postgres/miniflux?sslmode=disable
       RUN_MIGRATIONS: 1
       CREATE_ADMIN: 1
       ADMIN_USERNAME: johndoe
-      ADMIN_PASSWORD: password
+      ADMIN_PASSWORD: {{ .Env.MINIFLUX_ADMIN_PASSWORD }}
     depends_on:
       postgres:
         condition: service_healthy
@@ -30,7 +30,7 @@ services:
     environment:
       POSTGRES_DB: miniflux
       POSTGRES_USER: miniflux
-      POSTGRES_PASSWORD: secret
+      POSTGRES_PASSWORD: {{ .Env.MINIFLUX_POSTGRES_PASSWORD }}
     volumes:
       - /var/lib/miniflux/postgres/:/var/lib/postgresql/data
     healthcheck:

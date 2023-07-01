@@ -11,6 +11,7 @@ Initialize *asdf*:
 ```sh
 $ asdf plugin add scaleway-cli
 $ asdf plugin-add jq https://github.com/AZMCode/asdf-jq.git
+$ asdf plugin-add gomplate https://github.com/sneakybeaky/asdf-gomplate.git
 $ asdf install
 ```
 
@@ -263,7 +264,13 @@ $ ./scripts/install_basic_server_configuration.sh
 
 ```sh
 $ ./scripts/deploy_miniflux.sh
+$ echo "Go to http://$SERVER1_IP:8080"
+Go to http://51.158.119.141:8080
 ```
+
+- Login: `johndoe`
+- Password: see password in `.secret`
+
 
 ## Part 3: destroy the server
 
