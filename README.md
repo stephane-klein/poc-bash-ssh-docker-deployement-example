@@ -238,6 +238,14 @@ Fetch public ip:
 $ scw instance server list name=server1 -o json | jq -r ".[0].public_ip.address"
 ```
 
+or:
+
+```sh
+$ direnv reload
+$ echo $SERVER1_IP
+51.158.119.141
+```
+
 ```sh
 $ terraform destroy
 ```
