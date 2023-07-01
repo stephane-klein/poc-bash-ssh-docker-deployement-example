@@ -256,7 +256,7 @@ $ ssh -o "StrictHostKeyChecking no" root@$SERVER1_IP
 ```
 
 ```
-$ ./scripts/install.sh
+$ ./scripts/install_basic_server_configuration.sh
 ```
 
 ## Part 2: deploy Miniflux application
