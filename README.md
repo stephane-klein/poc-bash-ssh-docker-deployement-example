@@ -254,7 +254,7 @@ $ ssh -o "StrictHostKeyChecking no" root@$SERVER1_IP
 ```
 
 ```
-$ ssh root@$SERVER1_IP 'bash -s' < install-basic-server-configuration.sh
+$ ssh root@$SERVER1_IP 'bash -s' < install_basic_server_configuration.sh
 ```
 
 ```sh
