@@ -246,6 +246,13 @@ $ echo $SERVER1_IP
 51.158.119.141
 ```
 
+Add server fingerprint to you `known_hosts`:
+
+```
+$ ssh -o "StrictHostKeyChecking no" root@$SERVER1_IP
+# exit
+```
+
 ```sh
 $ terraform destroy
 ```
