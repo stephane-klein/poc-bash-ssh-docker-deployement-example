@@ -6,10 +6,23 @@ PROJECT_FOLDER="/srv/miniflux/"
 mkdir -p ${PROJECT_FOLDER}
 
 cat <<EOF > ${PROJECT_FOLDER}docker-compose.yaml
-version: '3.8'
 services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: miniflux
+      POSTGRES_USER: miniflux
+      POSTGRES_PASSWORD: {{ .Env.MINIFLUX_POSTGRES_PASSWORD }}
+    volumes:
+      - postgres:/var/lib/postgresql/data/
+    healthcheck:
+      test: ['CMD', 'pg_isready']
+      interval: 10s
+      start_period: 30s
+
   miniflux:
-    image: miniflux/miniflux:2.0.45
+    image: miniflux/miniflux:2.2.5
     ports:
     - 8080:8080
     environment:
@@ -18,29 +31,19 @@ services:
       CREATE_ADMIN: 1
       ADMIN_USERNAME: johndoe
       ADMIN_PASSWORD: {{ .Env.MINIFLUX_ADMIN_PASSWORD }}
+    healthcheck:
+      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
     depends_on:
       postgres:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
 
+volumes:
   postgres:
-    image: postgres:15
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: miniflux
-      POSTGRES_USER: miniflux
-      POSTGRES_PASSWORD: {{ .Env.MINIFLUX_POSTGRES_PASSWORD }}
-    volumes:
-      - /var/lib/miniflux/postgres/:/var/lib/postgresql/data
-    healthcheck:
-      test: ['CMD', 'pg_isready']
-      interval: 10s
-      start_period: 30s
+     name: miniflux_postgres
 
 EOF
 
 cd ${PROJECT_FOLDER}
 
 docker compose pull
-docker compose up -d miniflux --wait
+docker compose up -d --remove-orphans --wait
