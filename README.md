@@ -4,15 +4,13 @@ Root issue: https://github.com/stephane-klein/backlog/issues/250
 
 Prerequisites:
 
-- https://asdf-vm.com/
+- https://mise.jdx.dev/
 
-Initialize *asdf*:
+Initialize *Mise*:
 
 ```sh
-$ asdf plugin add scaleway-cli
-$ asdf plugin-add jq https://github.com/AZMCode/asdf-jq.git
-$ asdf plugin-add gomplate https://github.com/sneakybeaky/asdf-gomplate.git
-$ asdf install
+$ mise trust
+$ mise install
 ```
 
 ```sh
@@ -24,7 +22,7 @@ Update `.secret` and `.envrc` with your personnal access key, secret key…
 Load variable env:
 
 ```sh
-$ direnv allow
+$ source .envrc
 ```
 
 ## Part 1: deploy the server
@@ -244,7 +242,7 @@ $ scw instance server list name=server1 -o json | jq -r ".[0].public_ip.address"
 or:
 
 ```sh
-$ direnv reload
+$ source .envrc
 $ echo $SERVER1_IP
 51.158.119.141
 ```
