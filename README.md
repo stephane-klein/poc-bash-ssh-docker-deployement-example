@@ -80,7 +80,7 @@ STARDUST1-S       € 0.005       10 GB                  1    0    1.0 GiB  x86_
 ```
 
 ```sh
-$ terraform init
+$ terraform init --upgrade
 ```
 
 ```sh
